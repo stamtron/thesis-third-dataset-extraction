@@ -11,7 +11,7 @@ import re
 import glob
 from convenience import is_cv3
 
-def extract_frames(k, video_path, path_to_save, channel, start, stop, nframes):
+def extract_frames(k, video_path, path_to_save, event, channel, start, stop, nframes):
     
 #     m = re.search('tos/(.+?).mpg', video_path)
 #     if m:
@@ -21,8 +21,8 @@ def extract_frames(k, video_path, path_to_save, channel, start, stop, nframes):
 #     if not os.path.exists(path_to_save):
 #         os.mkdir(path_to_save)
 
-#     path_to_save = path_to_save + '/'
-    path_to_save = path_to_save + 'event'+'{:03d}'.format(k)
+    path_to_save = path_to_save + '/'
+    path_to_save = path_to_save + event + '_event'+'{:03d}'.format(k)
 
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
@@ -53,4 +53,4 @@ def extract_frames(k, video_path, path_to_save, channel, start, stop, nframes):
     for j in range(len(frames)):
         cap.set(cv2.CAP_PROP_POS_FRAMES, int(frames[j]))
         suc,im = cap.read()
-        cv2.imwrite(path_to_save + '_frame' + '{:06d}'.format(j) + '_channel' + str(channel) + '.png', im)
+        cv2.imwrite(path_to_save + '_channel' + str(channel) + '_frame' + '{:06d}'.format(j) + '.png', im)
