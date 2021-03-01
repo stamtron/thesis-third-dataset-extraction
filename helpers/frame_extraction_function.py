@@ -36,7 +36,7 @@ def extract_frames(k, video_path, path_to_save, event, channel, start, stop, nfr
 #         # No need to do anything stop is already time
 #         pass 
     
-    assert(stop>start), f"The end time for video {video_path} provided is before the start time {start}, {stop}"
+    #assert(stop>start), f"The end time for video {video_path} provided is before the start time {start}, {stop}"
     assert(stop<(1000*cap.get(cv2.CAP_PROP_FRAME_COUNT)*cap.get(cv2.CAP_PROP_FPS))), "stop greater than video end"
     
     cap.set(cv2.CAP_PROP_POS_MSEC, stop)
